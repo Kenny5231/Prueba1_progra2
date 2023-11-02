@@ -106,18 +106,24 @@ public class BlockBusterApp {
         });
 
         btnAlquilar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (txtCodigo.getText().isEmpty() || txtDias.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "No deje campos vacíos.");
-                } else {
-                    int codigo = Integer.parseInt(txtCodigo.getText());
-                    String tipo = comboBox.getSelectedItem().toString();
-                    int dias = Integer.parseInt(txtDias.getText());
+    public void actionPerformed(ActionEvent e) {
+        if (txtCodigo.getText().isEmpty() || txtDias.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No deje campos vacíos.");
+        } else {
+            int codigo = Integer.parseInt(txtCodigo.getText());
+            String tipo = comboBox.getSelectedItem().toString();
+            int dias = Integer.parseInt(txtDias.getText());
 
-                    blockBuster.rentar(codigo, tipo, dias);
-                }
+            BlockBusterItem item = blockBuster.buscarItem(codigo, tipo);
+            if (item != null) {
+                double monto = item.pagoRenta(dias);
+                JOptionPane.showMessageDialog(null, "Item encontrado:\n" + item.toString() + "\n\nMonto a pagar: " + monto);
+            } else {
+                JOptionPane.showMessageDialog(null, "Item no encontrado.");
             }
-        });
+        }
+    }
+});
 
         frame.setVisible(true);
     }

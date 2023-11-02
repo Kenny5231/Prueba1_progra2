@@ -8,10 +8,22 @@
  * @author Kenny
  */
     import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 class BlockBuster {
     private  ArrayList<BlockBusterItem> items;
+    public static double montoAPagar;
 
+    public static double getMontoAPagar() {
+        return montoAPagar;
+    }
+
+    public static void setMontoAPagar(double montoAPagar) {
+        BlockBuster.montoAPagar = montoAPagar;
+    }
+    
+    
+    
     public BlockBuster() {
         items = new ArrayList<>();
     }
@@ -34,21 +46,21 @@ class BlockBuster {
                 items.add(new VideoGameItem(codigo, nombre, "PLAYSTATION"));
             }
         } else {
-            System.out.println("Ya existe un item con el código " + codigo + " y tipo " + tipoItem);
+                        JOptionPane.showMessageDialog(null, "Ya existe un item con el código " + codigo + " y tipo " + tipoItem);
+
         }
     }
 
     public void rentar(int codigo, String tipoItem, int dias) {
         BlockBusterItem item = buscarItem(codigo, tipoItem);
         if (item != null) {
-            System.out.println(item);
-            double montoAPagar = item.pagoRenta(dias);
-            System.out.println("Monto a pagar: " + montoAPagar + " Lps.");
+             montoAPagar = item.pagoRenta(dias);
         } else {
-            System.out.println("Item no existe.");
+            JOptionPane.showMessageDialog(null, "Item no existe");
+
         }
     }
-
+    
     public void auditarMovieEstados() {
         for (BlockBusterItem item : items) {
             if (item instanceof MovieItem movieItem) {
