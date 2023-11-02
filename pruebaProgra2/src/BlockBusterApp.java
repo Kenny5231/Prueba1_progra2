@@ -73,6 +73,19 @@ public class BlockBusterApp {
         JButton btnAlquilar = new JButton("Alquilar");
         btnAlquilar.setBounds(20, 180, 150, 25);
         frame.add(btnAlquilar);
+        
+        JButton btnExit = new JButton("Exit");
+        btnExit.setBounds(200, 180, 150, 25);
+        frame.add(btnExit);
+
+        btnExit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int confirmed = JOptionPane.showConfirmDialog(null, "¿Estás seguro que quieres salir?", "Exit Confirmation", JOptionPane.YES_NO_OPTION);
+                if (confirmed == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            }
+        });
 
         btnAgregar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
